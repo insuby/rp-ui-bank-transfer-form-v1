@@ -5,7 +5,7 @@
   "packageManager": "pnpm@8.15.1",
   "scripts": {
     "start": "react-scripts start",
-    "build": "rimraf ./build-rp-ui-bank-transfer-form-v1.zip && react-scripts build && zip -r build-zeroone-stats.zip ./dist",
+    "build": "react-scripts build",
     "lint": "eslint src --fix && prettier --write src",
     "lint-staged": "eslint src --fix && prettier --write src",
     "prepare": "husky"
@@ -46,7 +46,6 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^9.0.11",
     "prettier": "2.8.7",
-    "rimraf": "^5.0.5",
     "sass": "^1.75.0",
     "typescript": "^5.0.4"
   },
