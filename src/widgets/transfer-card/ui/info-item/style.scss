@@ -1,0 +1,66 @@
+.transfer-card {
+  border-radius: 24px;
+  padding: 32px;
+  width: 520px;
+  height: 875px;
+
+  background: #fff;
+
+  display: grid;
+  grid-template-rows: 1fr 4fr 1fr 1fr;
+  row-gap: 24px;
+
+  &__header {
+    display: grid;
+    row-gap: 16px;
+  }
+
+  &__body {
+
+  }
+
+  &__footer {
+    display: grid;
+    row-gap: 16px;
+  }
+
+  &__heading {
+
+  }
+
+  &__instruction {
+
+  }
+
+  &__alert {
+    border-radius: 16px;
+    padding: 12px 16px;
+    width: 456px;
+    height: 64px;
+    background: #f8f8ff;
+
+    & .alert {
+      &__icon {
+        //border-radius: 8px;
+        //padding: 8px;
+        width: 36px;
+        height: 36px;
+
+        //background: #ff264c;
+      }
+
+      &__text {
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 143%;
+        color: #7e8597;
+
+        span {
+          font-weight: 700;
+          color: #ff264c;
+        }
+      }
+    }
+  }
+}
