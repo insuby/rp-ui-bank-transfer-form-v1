@@ -1,3 +1,4 @@
+import './style.scss';
 import { cx } from '@emotion/css';
 
 import { formatDuration, intervalToDuration, isPast } from 'date-fns';
@@ -64,13 +65,10 @@ export const Timer = ({
 
   return (
     <button
-      className={cx(
-        'flex-1 py-[19px] rounded-r-3xl text-2xl font-semibold border-y-2 border-r-2 border-black',
-        {
-          'border-red': isLastMinute,
-          'text-red': isLastMinute,
-        },
-      )}
+      className={cx('timer', {
+        'border-red': isLastMinute,
+        'text-red': isLastMinute,
+      })}
       type="button"
     >
       {items.filter(Boolean).join(':')}

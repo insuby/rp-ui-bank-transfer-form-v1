@@ -8,6 +8,7 @@
   "semi": true,
   "trailingComma": "all",
   "arrowParens": "always",
+  "endOfLine": "lf",
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "importOrder": [
     "\\w+.s*css$",

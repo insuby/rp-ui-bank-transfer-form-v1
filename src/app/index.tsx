@@ -1,39 +1,73 @@
 import './styles/main.scss';
-import { ru } from 'date-fns/locale';
-import { setDefaultOptions } from 'date-fns';
-import { withProviders } from 'app/providers';
-import { Alert, Layout } from 'widgets';
-import { Navigate, Route, Routes } from 'react-router-dom';
+
+import type { Locale } from '@eo-locale/core';
+import { PaymentPage } from 'pages';
+
+import { TranslationsProvider } from '@eo-locale/react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
 import {
-  AuthPage,
-  ProfilePage,
-  StatsPage,
-  RatingPage
-} from 'pages';
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useSearchParams,
+} from 'react-router-dom';
+
+import { Locales } from 'shared/locale';
 import { RoutesPath } from 'shared/routes-path';
-import { withUser } from 'app/providers/with-user';
 
-setDefaultOptions({ locale: ru });
+const LOCALES: Locale[] = [
+  {
+    language: 'en',
+    messages: Locales.en,
+  },
+  {
+    language: 'ru',
+    messages: Locales.ru,
+  },
+  {
+    language: 'uz',
+    messages: Locales.uz,
+  },
+];
 
-export const App = withProviders(() => {
+const availableLanguages = LOCALES.map((locale) => locale.language);
+
+const getLanguageFromSearchParams = (searchParams: URLSearchParams) => {
+  const language = searchParams.get('lang')?.toLowerCase();
+  if (language && availableLanguages.includes(language)) {
+    return language;
+  }
+
+  return 'en';
+};
+
+export const App = () => {
+  const [queryClient] = useState(new QueryClient());
+
   return (
-    <div className="app">
-      <Pages />
-      <Alert />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Pages />
+      </BrowserRouter>
+    </QueryClientProvider>
   );
-});
+};
 
-const Pages = withUser(() => {
+const Pages = () => {
+  const [searchParams] = useSearchParams();
+  const language = getLanguageFromSearchParams(searchParams);
+
   return (
-    <Routes>
-      <Route path={RoutesPath.AUTH} element={<AuthPage />} />
-      <Route element={<Layout />}>
-        <Route path={RoutesPath.PROFILE} element={<ProfilePage />} />
-        <Route path={RoutesPath.STATS} element={<StatsPage />} />
-        <Route path={RoutesPath.RATING} element={<RatingPage />} />
-      </Route>
-      <Route path="*" element={<Navigate replace to={RoutesPath.PROFILE} />} />
-    </Routes>
+    <TranslationsProvider language={language} locales={LOCALES}>
+      <Routes>
+        <Route path={RoutesPath.PAYMENT} element={<PaymentPage />} />
+        <Route
+          path="*"
+          element={<Navigate replace to={RoutesPath.PAYMENT} />}
+        />
+      </Routes>
+    </TranslationsProvider>
   );
-});
+};

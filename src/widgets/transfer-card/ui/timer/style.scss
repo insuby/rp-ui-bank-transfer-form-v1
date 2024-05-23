@@ -1,93 +1,16 @@
-.transfer-card {
-  border-radius: 24px;
-  padding: 32px;
-  width: 520px;
-  height: 875px;
+.timer {
+  border: 2px solid #8375e9;
+  border-radius: 20px;
+  padding: 24px;
+  height: 64px;
+  width: 100%;
 
   background: #fff;
 
-  display: grid;
-  grid-template-rows: 1fr 4fr 1fr 1fr;
-  row-gap: 24px;
-
-  &__header {
-    display: grid;
-    row-gap: 16px;
-  }
-
-  &__body {
-    display: grid;
-    row-gap: 16px;
-
-    border: 1px solid #f0eff4;
-    border-radius: 16px;
-    padding: 0 20px;
-  }
-
-  &__footer {
-    display: grid;
-    row-gap: 16px;
-  }
-
-  &__heading {
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 144%;
-    color: #081420;
-
-    margin: 0;
-  }
-
-  &__instruction {
-    border-radius: 16px;
-    padding: 12px 16px;
-    width: 456px;
-    height: 44px;
-
-    background: #f8f8ff;
-
-    font-family: var(--font-family);
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 143%;
-    color: #8375e9;
-
-    cursor: pointer;
-  }
-
-  &__alert {
-    border-radius: 16px;
-    padding: 12px 16px;
-    height: 64px;
-    background: #f8f8ff;
-
-    display: flex;
-    align-items: center;
-    column-gap: 16px;
-
-    & .alert {
-      &__icon {
-        border-radius: 8px;
-        padding: 8px;
-        width: 36px;
-        height: 36px;
-
-        background: #ff264c;
-      }
-
-      &__text {
-        font-family: var(--font-family);
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 143%;
-        color: #7e8597;
-
-        span {
-          font-weight: 700;
-          color: #ff264c;
-        }
-      }
-    }
-  }
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  text-align: center;
+  color: #8375e9;
 }
