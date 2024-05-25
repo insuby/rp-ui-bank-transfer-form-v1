@@ -1,7 +1,7 @@
 {
-  "card.heading": "Банковский перевод",
+  "card.heading": "Bank transfer",
   "card.instruction": "Please read in detail and follow the payment instruction",
-  "card.instruction.title": "Инструкция",
+  "card.instruction.title": "Instruction",
   "card.amount": "Amount to be transferred",
   "card.beneficiaryName": "Beneficiary’s name and address",
   "card.beneficiaryBankName": "Full name of the beneficiary’s bank",
@@ -15,10 +15,11 @@
   "instruction.fourth": "Complete the transfer and tap the button \"I've sent\".",
   "instruction.fifth": "Wait for your account top up. It can take up to 24 hours depending on banks.",
   "footer.warning": "The transfer must be completed in <span class=\"alert__accent\">30 min</span><br />otherwise the transfer will be considered invalid",
-  "footer.button": "Отправил",
+  "footer.button": "I've sent",
   "status.success": "Thank your <br /> for your transfer",
   "status.success.sub": "Please wait for your account top up",
   "status.success.footer": "It can take up to 24 hours depending on banks",
-  "status.failed": "Ошибка",
-  "status.failed.sub": "Что-то пошло не так"
+  "status.failed": "Fail",
+  "status.failed.sub": "Other technical reasons",
+  "status.failed.button": "Try again"
 }
