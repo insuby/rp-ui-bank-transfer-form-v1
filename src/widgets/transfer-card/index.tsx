@@ -22,6 +22,10 @@ export const TransferCard = () => {
     setIsTransferSucceed('succeed');
   };
 
+  const onTryAgainClick = () => {
+    setIsTransferSucceed(null);
+  };
+
   const onTimerFinish = () => {
     setIsTransferSucceed('failed');
   };
@@ -74,7 +78,7 @@ export const TransferCard = () => {
             copiedValue={copiedValue}
             setCopiedValue={setCopiedValue}
             heading={<Text id="card.invoiceId" />}
-            text={'123234rw-1233erjf-er2342-234234d-3245234'}
+            text="123234rw-1233erjf-er2342-234234d-3245234"
           />
         </div>
         <div className="transfer-card__footer">
@@ -101,8 +105,13 @@ export const TransferCard = () => {
             copiedValue={copiedValue}
             setCopiedValue={setCopiedValue}
             heading={<Text id="card.invoiceId" />}
-            text={'123234rw-1233erjf-er2342-234234d-3245234'}
+            text="123234rw-1233erjf-er2342-234234d-3245234"
           />
+        </div>
+        <div className="transfer-card__footer">
+          <button className="transfer-card__button" onClick={onTryAgainClick}>
+            <Text id="status.failed.button" />
+          </button>
         </div>
       </div>
     );
@@ -185,7 +194,7 @@ export const TransferCard = () => {
         </div>
         <div className="transfer-card__actions">
           <Timer
-            deadline={addMinutes(new Date(), 30)}
+            deadline={addMinutes(new Date(), 3)}
             onFinish={onTimerFinish}
           />
           <button className="transfer-card__button" onClick={onIveSentClick}>

@@ -20,5 +20,6 @@
   "status.success.sub": "Please wait for your account top up",
   "status.success.footer": "It can take up to 24 hours depending on banks",
   "status.failed": "Fail",
-  "status.failed.sub": "Other technical reasons"
+  "status.failed.sub": "Other technical reasons",
+  "status.failed.button": "Try again"
 }

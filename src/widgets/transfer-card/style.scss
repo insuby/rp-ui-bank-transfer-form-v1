@@ -39,6 +39,10 @@
     grid-template-rows: 60% 1fr 1fr;
 
     & .transfer-card {
+      background-size: 90%;
+      background-position: top center;
+      background-repeat: no-repeat;
+
       &__header {
         display: grid;
         row-gap: unset;
@@ -88,11 +92,19 @@
   }
 
   &_status-succeed {
-    background-image: url("../../../public/transfer-succeed.svg");
+    & .transfer-card {
+      &__header {
+        background-image: url('../../../public/transfer-succeed.svg');
+      }
+    }
   }
 
   &_status-failed {
-    background-image: url("../../../public/transfer-failed.svg");
+    & .transfer-card {
+      &__header {
+        background-image: url('../../../public/transfer-failed.svg');
+      }
+    }
   }
 
   &__header {
