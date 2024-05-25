@@ -1,7 +1,8 @@
 .transfer-card {
   border-radius: 24px;
   padding: 32px;
-  width: 520px;
+  max-width: 520px;
+  width: 100%;
 
   background: #fff;
 
@@ -29,9 +30,82 @@
     }
   }
 
+  &_status {
+    background-size: 90%;
+    background-position: top center;
+    background-repeat: no-repeat;
+    min-height: 563px;
+
+    grid-template-rows: 60% 1fr 1fr;
+
+    & .transfer-card {
+      &__header {
+        display: grid;
+        row-gap: unset;
+        align-items: end;
+        grid-template-rows: 80% 1fr;
+      }
+
+      &__body {
+        height: fit-content;
+        align-self: center;
+      }
+
+      &__footer {
+        border-radius: 16px;
+        padding: 12px 16px;
+
+        background: #f8f8ff;
+
+        font-family: var(--font-family);
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 133%;
+        text-align: center;
+        color: #7e8597;
+
+        align-self: end;
+      }
+
+      &__heading {
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 100%;
+        text-align: center;
+        color: #081420;
+      }
+
+      &__sub-text {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 160%;
+        text-align: center;
+        color: #7e8597;
+      }
+    }
+  }
+
+  &_status-succeed {
+    background-image: url("../../../public/transfer-succeed.svg");
+  }
+
+  &_status-failed {
+    background-image: url("../../../public/transfer-failed.svg");
+  }
+
   &__header {
     display: grid;
     row-gap: 16px;
+
+    svg {
+      &:hover {
+        rect {
+          stroke: #8375e9;
+        }
+      }
+    }
   }
 
   &__body {
@@ -61,8 +135,6 @@
   &__instruction {
     border-radius: 16px;
     padding: 12px 16px;
-    width: 456px;
-    height: 44px;
 
     background: #f8f8ff;
 
@@ -75,15 +147,14 @@
     cursor: pointer;
 
     &:hover {
-      color: #ffffff;
-      background: #8375e990;
+      color: #fff;
+      background: #8375e9;
     }
   }
 
   &__alert {
     border-radius: 16px;
     padding: 12px 16px;
-    height: 64px;
     background: #f8f8ff;
 
     display: flex;
@@ -106,11 +177,11 @@
         font-size: 14px;
         line-height: 143%;
         color: #7e8597;
+      }
 
-        span {
-          font-weight: 700;
-          color: #ff264c;
-        }
+      &__accent {
+        font-weight: 700;
+        color: #ff264c;
       }
     }
   }
@@ -128,6 +199,8 @@
     height: 64px;
     width: 100%;
 
+    cursor: pointer;
+
     background: #8375e9;
 
     font-family: var(--font-family);
@@ -136,6 +209,11 @@
     line-height: 100%;
     text-align: center;
     color: #fff;
+
+    &:hover {
+      background: #fff;
+      color: #8375e9;
+    }
   }
 
   &__instruction-list {
@@ -147,14 +225,8 @@
 
     height: fit-content;
 
-    li {
-      margin: 0;
-
-      display: grid;
-      grid-template-columns: 28px 1fr;
-      column-gap: 16px;
-
-      span:first-child {
+    & .instruction-list {
+      &__index {
         border: 1px solid #f0eff4;
         border-radius: 9px;
         width: 28px;
@@ -172,13 +244,24 @@
         color: #8375e9;
       }
 
-      span:last-child {
-        font-family: var(--font-family);
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 143%;
-        color: #7e8597;
+      &__accent {
+        font-weight: 700 !important;
+        color: #8375e9 !important;
       }
+    }
+
+    li {
+      margin: 0;
+
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      column-gap: 16px;
+
+      font-family: var(--font-family);
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 143%;
+      color: #7e8597;
     }
   }
 }

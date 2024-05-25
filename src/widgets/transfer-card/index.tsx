@@ -5,47 +5,38 @@ import { addMinutes } from 'date-fns';
 import { Text } from '@eo-locale/react';
 import { useState } from 'react';
 
-import { InfoItem, Timer } from './ui';
+import { BackButton, InfoItem, Timer } from './ui';
 
 export const TransferCard = () => {
   const [copiedValue, setCopiedValue] = useState('');
   const [isInstructionVisible, setIsInstructionVisible] = useState(false);
+  const [isTransferSucceed, setIsTransferSucceed] = useState<
+    'succeed' | 'failed' | null
+  >(null);
 
-  const onClick = () => {
+  const onInstructionClick = () => {
     setIsInstructionVisible(!isInstructionVisible);
+  };
+
+  const onIveSentClick = () => {
+    setIsTransferSucceed('succeed');
+  };
+
+  const onTimerFinish = () => {
+    setIsTransferSucceed('failed');
   };
 
   if (isInstructionVisible) {
     return (
       <div className="transfer-card transfer-card_instruction">
         <div className="transfer-card__header">
-          <svg
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            onClick={onClick}
-          >
-            <rect
-              x="0.5"
-              y="0.5"
-              width="39"
-              height="39"
-              rx="10.5"
-              stroke="#F0EFF4"
-            />
-            <path
-              d="M24.0186 12L15.8433 19.2519C15.3948 19.6498 15.3948 20.3502 15.8433 20.7481L24.0186 28"
-              stroke="#8375E9"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-            />
-          </svg>
-          <h4 className="transfer-card__heading">Instruction</h4>
+          <BackButton onClick={onInstructionClick} />
+          <h4 className="transfer-card__heading">
+            <Text id="card.instruction.title" />
+          </h4>
         </div>
         <div className="transfer-card__body">
-          <ul className="transfer-card__instruction-list">
+          <ul className="transfer-card__instruction-list instruction-list">
             {[
               'instruction.first',
               'instruction.second',
@@ -55,10 +46,8 @@ export const TransferCard = () => {
             ].map((item, index) => {
               return (
                 <li key={index}>
-                  <span>{index + 1}</span>
-                  <span>
-                    <Text id={item} />
-                  </span>
+                  <span className="instruction-list__index">{index + 1}</span>
+                  <Text id={item} html />
                 </li>
               );
             })}
@@ -68,11 +57,67 @@ export const TransferCard = () => {
     );
   }
 
+  if (isTransferSucceed === 'succeed') {
+    return (
+      <div className="transfer-card transfer-card_status transfer-card_status-succeed">
+        <div className="transfer-card__header">
+          <h2 className="transfer-card__heading">
+            <Text id="status.success" html />
+          </h2>
+          <p className="transfer-card__sub-text">
+            <Text id="status.success.sub" />
+          </p>
+        </div>
+        <div className="transfer-card__body info">
+          <InfoItem
+            className="info-item_inverse"
+            copiedValue={copiedValue}
+            setCopiedValue={setCopiedValue}
+            heading={<Text id="card.invoiceId" />}
+            text={'123234rw-1233erjf-er2342-234234d-3245234'}
+          />
+        </div>
+        <div className="transfer-card__footer">
+          <Text id="status.success.footer" />
+        </div>
+      </div>
+    );
+  }
+
+  if (isTransferSucceed === 'failed') {
+    return (
+      <div className="transfer-card transfer-card_status transfer-card_status-failed">
+        <div className="transfer-card__header">
+          <h2 className="transfer-card__heading">
+            <Text id="status.failed" html />
+          </h2>
+          <p className="transfer-card__sub-text">
+            <Text id="status.failed.sub" />
+          </p>
+        </div>
+        <div className="transfer-card__body info">
+          <InfoItem
+            className="info-item_inverse"
+            copiedValue={copiedValue}
+            setCopiedValue={setCopiedValue}
+            heading={<Text id="card.invoiceId" />}
+            text={'123234rw-1233erjf-er2342-234234d-3245234'}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="transfer-card">
       <div className="transfer-card__header">
-        <h4 className="transfer-card__heading">Bank transfer</h4>
-        <div className="transfer-card__instruction" onClick={onClick}>
+        <h2 className="transfer-card__heading">
+          <Text id="card.heading" />
+        </h2>
+        <div
+          className="transfer-card__instruction"
+          onClick={onInstructionClick}
+        >
           <Text id="card.instruction" />
         </div>
       </div>
@@ -135,13 +180,17 @@ export const TransferCard = () => {
             </svg>
           </div>
           <div className="alert__text">
-            The transfer must be completed in <span>30 min</span> <br />
-            otherwise the transfer will be considered invalid
+            <Text id="footer.warning" html />
           </div>
         </div>
         <div className="transfer-card__actions">
-          <Timer deadline={addMinutes(new Date(), 30)} />
-          <button className="transfer-card__button">I've sent</button>
+          <Timer
+            deadline={addMinutes(new Date(), 30)}
+            onFinish={onTimerFinish}
+          />
+          <button className="transfer-card__button" onClick={onIveSentClick}>
+            <Text id="footer.button" />
+          </button>
         </div>
       </div>
     </div>

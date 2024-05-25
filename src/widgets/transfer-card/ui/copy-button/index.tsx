@@ -1,4 +1,5 @@
 import './styles.scss';
+import { cx } from '@emotion/css';
 
 import { useCopyToClipboard } from 'usehooks-ts';
 
@@ -24,30 +25,14 @@ export const CopyButton = ({
     copy('');
   };
 
-  return copiedValue !== copied ? (
-    <span className="copy-button" onClick={onClick}>
-      copy
+  return (
+    <span
+      className={cx('copy-button', {
+        'copy-button_copied': copiedValue === copied,
+      })}
+      onClick={onClick}
+    >
+      {copiedValue !== copied ? 'copy' : 'copied'}
     </span>
-  ) : (
-    <span className="copy-button copy-button_copied">copied</span>
   );
 };
-//
-// export const CopyButton = ({ value }: { value: string }) => {
-//   const [buttonSwitchValue, setButtonSwitchValue] = useState('');
-//   const [_, copy] = useCopyToClipboard();
-//
-//   const onClick = () => {
-//     setButtonSwitchValue(value);
-//     copy(value);
-//     setTimeout(setButtonSwitchValue, 500, '');
-//   };
-//
-//   return !buttonSwitchValue ? (
-//     <span className="copy-button" onClick={onClick}>
-//       copy
-//     </span>
-//   ) : (
-//     <span className="copy-button copy-button_copied">copied</span>
-//   );
-// };
