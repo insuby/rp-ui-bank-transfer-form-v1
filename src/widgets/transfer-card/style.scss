@@ -4,15 +4,14 @@
   max-width: 520px;
   width: 100%;
   height: fit-content;
-
   overflow: auto;
-
   background: #fff;
-
   display: grid;
   row-gap: 24px;
-
   margin: auto;
+  min-height: 800px;
+  scroll-behavior: smooth;
+  position: relative;
 
   &::-webkit-scrollbar {
     display: none;
